@@ -1,6 +1,6 @@
-import pytest
+import pytest`
 
-from PageObject.MainFormPage import MainFormPage
+from PageObject.MainPage import MainPage
 
 
 class TestDemo:
@@ -11,5 +11,5 @@ class TestDemo:
         driver.get(self.DEMOQA_URL)
 
     def test_main_title(self, driver):
-        main_form_page = MainFormPage(driver)
+        main_form_page = MainPage(driver)
         main_form_page.verify_main_title(main_form_page.EXPECTED_MAIN_TITLE)
