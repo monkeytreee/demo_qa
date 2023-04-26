@@ -10,6 +10,7 @@ class TestDemo:
     def open_main_page(self, driver):
         driver.get(self.DEMOQA_URL)
 
-    def test_main_title(self, driver):
-        main_form_page = MainPage(driver)
-        main_form_page.verify_main_title(main_form_page.EXPECTED_MAIN_TITLE)
+    def test_elements_title(self, driver):
+        main_page = MainPage(driver)
+        elements_page = main_page.elements_btn_click()
+        elements_page.verify_header()

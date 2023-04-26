@@ -1,36 +1,26 @@
 from selenium.webdriver.common.by import By
 
 from PageObject.AlertsFramesWindows.AlertsFramesWindowsPage import AlertsFramesWindowsPage
+from PageObject.BasePage import BasePage
 from PageObject.Elements.ElementsPage import ElementsPage
-from PageObject.Footer import Footer
 from PageObject.Forms.FormsPage import FormsPage
-from PageObject.Header import Header
 from PageObject.Interactions.InteractionsPage import InteractionsPage
 from PageObject.Widgets.WidgetsPage import WidgetsPage
 
 
-class MainPage(Header, Footer):
+class MainPage(BasePage):
     EXPECTED_MAIN_TITLE = 'DEMOQA'
-    SELENIUM_CERTIFICATION_TRAINING_BANNER = ''
-    ELEMENTS_BTN = ''
-    FORMS_BTN = ''
-    ALERT_FRAMES_WINDOWS_BTN = ''
-    WIDGETS_BTN = ''
-    INTERACTIONS_BTN = ''
-    BOOK_STORE_APPLICATION_BTN = ''
+    SELENIUM_CERTIFICATION_TRAINING_BANNER = '.home-banner'
+    ELEMENTS_BTN = '.category-cards .card:nth-of-type(1)'
+    FORMS_BTN = '.category-cards .card:nth-of-type(2)'
+    WIDGETS_BTN = '.category-cards .card:nth-of-type(3)'
+    INTERACTIONS_BTN = '.category-cards .card:nth-of-type(4)'
+    BOOK_STORE_APPS_BTN = '.category-cards .card:nth-of-type(5)'
+    ALERTS_FRAMES_WINDOWS_BTN = '.category-cards .card:nth-of-type(6)'
 
     def __init__(self, driver):
-        Header.__init__(self, driver)
-        Footer.__init__(self, driver)
+        BasePage.__init__(self, driver)
         self.__driver = driver
-
-    def get_main_title(self):
-        return self.__driver.title
-
-    def verify_main_title(self, expected_main_title):
-        actual_title = self.get_main_title()
-        assert expected_main_title in actual_title, f"Error: Expected main title '{self.EXPECTED_MAIN_TITLE}', " \
-                                                    f"actual title '{actual_title}'"
 
     def elements_btn_click(self):
         elements_btn = self.__driver.find_element(By.CSS_SELECTOR, self.ELEMENTS_BTN)
@@ -43,7 +33,7 @@ class MainPage(Header, Footer):
         return FormsPage(self.__driver)
 
     def alert_frames_windows_btn_click(self):
-        alert_frames_windows_btn = self.__driver.find_element(By.CSS_SELECTOR, self.ALERT_FRAMES_WINDOWS_BTN)
+        alert_frames_windows_btn = self.__driver.find_element(By.CSS_SELECTOR, self.ALERTS_FRAMES_WINDOWS_BTN)
         alert_frames_windows_btn.click()
         return AlertsFramesWindowsPage(self.__driver)
 
@@ -58,6 +48,6 @@ class MainPage(Header, Footer):
         return InteractionsPage(self.__driver)
 
     def book_store_app_btn_click(self):
-        book_store_app_btn = self.__driver.find_element(By.CSS_SELECTOR, self.BOOK_STORE_APPLICATION_BTN)
+        book_store_app_btn = self.__driver.find_element(By.CSS_SELECTOR, self.BOOK_STORE_APPS_BTN)
         book_store_app_btn.click()
         return ElementsPage(self.__driver)
